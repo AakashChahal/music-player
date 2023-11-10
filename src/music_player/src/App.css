@@ -1,38 +1,157 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.music-player {
+    /* create a responsive music player */
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.music-player .song-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.music-card {
+    width: 25rem;
+    height: 25rem;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 6px 6px rgba(0, 0, 0, 0.52);
+    transition: all 0.3s ease;
+}
+
+.music-card:hover {
+    box-shadow: 0 14px 28px rgba(200, 0, 0, 0.25),
+        0 10px 10px rgba(200, 0, 0, 0.22);
+}
+
+.music-card h2 {
+    font-size: 20px;
+    color: #333;
+}
+
+.song-info-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.song-info-status-title {
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.song-info-status-bar {
+    height: 20px;
+    width: 100%;
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.song-info-status-bar span {
+    display: block;
+    height: 100%;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.controls-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 6px 6px rgba(0, 0, 0, 0.52); */
+}
+
+.controls-btn:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.controls-btn-play-pause {
+    /* width: 100%;
+    height: 100%; */
+    background: url(https://img.icons8.com/ios-filled/50/000000/play--v1.png);
+    background-size: cover;
+    background-position: center;
+
+    /* background: url(https://img.icons8.com/ios-filled/50/000000/pause--v1.png);
+    background-size: cover;
+    background-position: center; */
+}
+
+.controls-btn-prev {
+    background: url(https://img.icons8.com/ios-filled/50/000000/rewind.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.controls-btn-next {
+    background: url(https://img.icons8.com/ios-filled/50/000000/fast-forward.png);
+    background-size: cover;
+    background-position: center;
 }
