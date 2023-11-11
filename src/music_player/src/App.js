@@ -2,13 +2,21 @@ import React, { useEffect } from "react";
 import "./App.css";
 
 function App() {
-    // store a random music image url in a variable
+    const [songTitle, setSongTitle] = React.useState("Music Title");
+    const [songArtist, setSongArtist] = React.useState("Artist Name");
     const [imgUrl, setImgUrl] = React.useState("");
     useEffect(() => {
         const random_id = Math.floor(Math.random() * 100);
         const url = `https://picsum.photos/id/${random_id}/300`;
         setImgUrl(url);
     }, []);
+
+    const callback = () => {
+        const response = fetch("http://localhost:5000/", {
+            method: "GET",
+        });
+        console.log(response);
+    };
 
     return (
         <div className="App">
@@ -25,8 +33,8 @@ function App() {
                     ></div>
                     <div className="song-info-status">
                         <div className="song-info-status-title">
-                            <h3>Music Title</h3>
-                            <p>Artist Name</p>
+                            <h3>{songTitle}</h3>
+                            <p>{songArtist}</p>
                         </div>
                         <div className="song-info-status-bar">
                             <span style={{ width: "50%" }}></span>
@@ -35,9 +43,7 @@ function App() {
                     <div className="controls">
                         <div
                             className="controls-btn controls-btn-prev"
-                            onClick={() => {
-                                window.alert("playing");
-                            }}
+                            onClick={callback}
                         ></div>
                         <div
                             className="controls-btn controls-btn-play-pause"
