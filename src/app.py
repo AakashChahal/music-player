@@ -2,7 +2,10 @@ from flask import Flask
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(
+    app,
+    resources={r"/*": {"origins": "*", "methods": ["GET", "POST"]}}
+)
 
 
 @app.route('/')
@@ -10,11 +13,10 @@ def hello_world():
     return 'Hello, World!'
 
 
-@app.route('/<name>', methods=['GET'])
-def hello_name(name):
-    # return the response as a json object
+@app.route('/<search_keyword>', methods=['GET'])
+def get_song(search_keyword):
     return {
-        "name": name
+        "result": search_keyword
     }
 
 

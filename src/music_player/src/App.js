@@ -5,25 +5,41 @@ function App() {
     const [songTitle, setSongTitle] = React.useState("Music Title");
     const [songArtist, setSongArtist] = React.useState("Artist Name");
     const [imgUrl, setImgUrl] = React.useState("");
+    const [search, setSearch] = React.useState("");
     useEffect(() => {
         const random_id = Math.floor(Math.random() * 100);
         const url = `https://picsum.photos/id/${random_id}/300`;
         setImgUrl(url);
     }, []);
 
-    const callback = () => {
-        const response = fetch("http://localhost:5000/", {
+    const callback = async () => {
+        setSearch(search.trim());
+        const response = await fetch(`/${encodeURIComponent(search)}`, {
             method: "GET",
         });
-        console.log(response);
+        const data = await response.json();
+        console.log(data);
+        setSongArtist(data.result);
+        setSearch("");
+        // setSongArtist(data);
     };
 
     return (
         <div className="App">
-            <header className="App-header">
-                <div className="music-player">
+            <div className="music-player">
+                <div className="search">
+                    <input
+                        className="search-input"
+                        type="text"
+                        placeholder="Search"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <div className="search-btn" onClick={callback}></div>
+                </div>
+                <div className="music-card">
                     <div
-                        className="song-info music-card"
+                        className="music-card-img"
                         style={{
                             backgroundImage: `url(${imgUrl})`,
                             backgroundSize: "cover",
@@ -43,23 +59,25 @@ function App() {
                     <div className="controls">
                         <div
                             className="controls-btn controls-btn-prev"
-                            onClick={callback}
+                            onClick={() => {
+                                console.log("previous");
+                            }}
                         ></div>
                         <div
                             className="controls-btn controls-btn-play-pause"
                             onClick={() => {
-                                window.alert("playing");
+                                console.log("play/pause");
                             }}
                         ></div>
                         <div
                             className="controls-btn controls-btn-next"
                             onClick={() => {
-                                window.alert("playing");
+                                console.log("next");
                             }}
                         ></div>
                     </div>
                 </div>
-            </header>
+            </div>
         </div>
     );
 }
